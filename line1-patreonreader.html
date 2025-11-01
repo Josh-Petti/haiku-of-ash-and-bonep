@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>序 — 焦げた夢 — Act 1</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .site-footer{
+      margin:0.75rem 0 0;
+      margin-left: calc(-1 * clamp(24px, 6vw, 48px));
+      margin-right: calc(-1 * clamp(24px, 6vw, 48px));
+      padding-left: clamp(24px, 6vw, 48px);
+      padding-right: clamp(24px, 6vw, 48px);
+      max-width:none;
+      width:100%;
+      padding-top:1rem;
+      border-top:1px solid rgba(229,234,242,.18);
+      border-right: 0;
+      border-left: 0;
+      border-bottom:1px solid rgba(229,234,242,.18);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.18)), var(--bg-primary);
+      backdrop-filter: blur(4px) saturate(115%);
+      -webkit-backdrop-filter: blur(4px) saturate(115%);
+    }
+    .site-footer__inner{display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:center;justify-content:space-between}
+    .site-footer small{color:var(--text-primary);opacity:.7}
+    .site-footer__nav{display:flex;align-items:center;justify-content:flex-end;gap:.5rem}
+  .site-footer__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .site-footer__sep{opacity:.45;margin:0 .5rem}
+    .site-footer__link{text-decoration:none;color:var(--text-primary);opacity:.85}
+    .site-footer__link:hover,.site-footer__link:focus{opacity:1;text-decoration:underline;outline:none}
+    @media (max-width:640px){
+      .site-footer__inner{
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        gap:.75rem;
+      }
+      .site-footer__center{
+        width:100%;
+        justify-content:center;
+      }
+      .site-footer__nav{
+        width:auto;
+        justify-content:center;
+        gap:.35rem;
+      }
+    }
+  /* End-of-line marker link back to landing */
+  .end-marker{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(0.5rem, 1.2vw, 0.75rem);
+    margin: 1.5rem 0 1.5rem;
+    color: var(--text-primary);
+  }
+    .end-marker::before,
+    .end-marker::after{
+      content:"";
+      height:2px;
+      width:clamp(56px, 12vw, 140px);
+      background: linear-gradient(90deg, rgba(229,234,242,.0), rgba(229,234,242,.36), rgba(229,234,242,.0));
+    }
+  .end-marker__link{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    text-decoration:none;
+    padding:0; margin:0;
+    border:0; background:none; border-radius:0;
+    font-variant: small-caps;
+    letter-spacing:.14em;
+    color: var(--text-primary);
+    line-height:1.15;
+    position: relative;
+  }
+  .end-marker__link::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-2px;
+    height:1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+    opacity:.7;
+  }
+  .end-marker__link:hover::after,
+  .end-marker__link:focus::after{ transform: scaleX(1); }
+
+  .end-marker__arrow{
+    width:14px; height:14px;
+    transition: transform .25s ease, opacity .2s ease;
+    opacity:.85;
+  }
+  .end-marker__link:hover .end-marker__arrow,
+  .end-marker__link:focus .end-marker__arrow{ transform: translateX(4px); opacity:1; }
+
+  .end-marker__link:focus-visible{ outline:2px solid var(--accent-red); outline-offset:4px; border-radius:4px; }
+    #manuscript { padding-bottom: 0 !important; padding-left: clamp(24px, 6vw, 48px) !important; padding-right: clamp(24px, 6vw, 48px) !important; }
+    /* Animated L→R gradient sweep in the hero */
+    .toc-hero { position: relative; overflow: hidden; }
+    .toc-hero > * { position: relative; z-index: 1; }
+    .toc-hero::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      filter: url(#smokeDistort);
+      /* subtle highlight band that sweeps left→right */
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(229,234,242,.08) 32%,
+        rgba(229,234,242,.18) 50%,
+        rgba(229,234,242,.08) 68%,
+        rgba(255,255,255,0) 100%
+      );
+      background-size: 200% 100%;
+      animation: heroSheen 24s linear infinite;
+    }
+    @keyframes heroSheen {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .toc-hero::before{ animation: none; filter: none; }
+    }
+    .hero-title { transform: none !important; }
+    .toc-summary-callout{
+      margin: clamp(1rem, 3vw, 1.5rem) auto;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      max-width: clamp(46ch, 60vw, 72ch);
+      border: 1px dashed rgba(214, 111, 111, 0.65);
+      border-radius: 14px;
+      background: rgba(214, 111, 111, 0.08);
+      color: var(--text-primary);
+      font-size: clamp(1rem, 2.2vw, 1.1rem);
+      line-height: 1.65;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute">
+    <defs>
+      <filter id="smokeDistort">
+        <feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="3" seed="7">
+          <animate attributeName="baseFrequency" dur="28s" values="0.006 0.02;0.010 0.03;0.006 0.02" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="12" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <header class="toc-hero">
+    <div class="hero-title">
+      <h1 class="hero-kanji">序</h1>
+      <h2 class="hero-name">焦げた夢</h2>
+    </div>
+    <h3 class="hero-tagline">※ Line 1 - A Dream Burnt to Ash ※</h3>
+  </header>
+  <main id="manuscript">
+    <section aria-labelledby="act-1-toc">
+      <header class="toc-section-head">
+        <h2 id="act-1-toc">Table of Contents</h2>
+      </header>
+      <p class="toc-summary-callout">Haiku of Ash and Bone is a psychologically brutal historical epic set in Sengoku-era Japan, blending the grounded realism of Shogun with folkloric horror. It is a multi-POV story exploring trauma, politics, and the shaping of individuals into weapons.</p>
+      
+      <div class="reader-warning-overlay" role="dialog" aria-live="assertive">
+        <div class="reader-warning" role="alert">
+          <div class="reader-warning__bodywrap">
+            <h2 class="reader-warning__title">READER DISCRETION ADVISED</h2>
+            <p class="reader-warning__body"><b>Haiku of Ash and Bone</b> is a work of fiction intended for a mature audience. The story contains graphic and explicit content, including but not limited to: scenes of intense violence, death, torture, and sexual assault.</p>
+            <button type="button" class="reader-warning__button" data-action="dismiss-warning">PROCEED</button>
+          </div>
+          <div class="reader-warning__art" aria-hidden="true">
+            <img src="assets/warning.png" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="chapters-list is-obscured" aria-hidden="true">
+      <div class="toc-grid">
+
+        <a class="reader-chapter-card" href="act-1/patreonprologue.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Prologue</span>
+            <h2>Before the Sun Cleared</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card" href="act-1/patreonchapter-1.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 1</span>
+            <h2>When Crows Mourn the Dead</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card" href="act-1/patreonchapter-2.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 2</span>
+            <h2>A Village Burns</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card" href="act-1/patreonchapter-3.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 3</span>
+            <h2>Mintao's Concern</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card" href="act-1/patreonchapter-4.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 4</span>
+            <h2>Let the Mountain Have Him</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card" href="act-1/patreonchapter-5.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 5</span>
+            <h2>Beneath the Torii</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card" href="act-1/patreonchapter-6.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 6</span>
+            <h2>Whispers in a Teahouse</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card" href="act-1/patreonchapter-7.html">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 7</span>
+            <h2>Wolves at the Dock</h2>
+          </div>
+        </a>
+
+        <a class="reader-chapter-card reader-chapter-card--upcoming reader-chapter-card--next" href="act-1/patreonchapter-8.html" aria-label="Chapter 8 available Tuesday">
+          <span class="reader-chapter-flag reader-chapter-flag--upcoming">Tuesday</span>
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 8</span>
+            <h2>Brine and Blood</h2>
+          </div>
+        </a>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 9</span>
+            <h2>The Scent of Bitter Herbs</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 10</span>
+            <h2>Red Marks and Ledgers</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 11</span>
+            <h2>A Debt of Blades</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 12</span>
+            <h2>Payment in Mud</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 13</span>
+            <h2>What the Fire Left</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 14</span>
+            <h2>A River of Ghost</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 15</span>
+            <h2>A Bridge of Men</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 16</span>
+            <h2>The Rice Spider's Game</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 17</span>
+            <h2>Wrong Place Wrong TimeD</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 18</span>
+            <h2>Hour of the Serpent</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 19</span>
+            <h2>A Third Player on the Board</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 20</span>
+            <h2>The Mending</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 21</span>
+            <h2>Box of Clothes</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 22</span>
+            <h2>A Sacrificial Stone</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 23</span>
+            <h2>Headless Jizo</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 24</span>
+            <h2>Where Names Go to Die </h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 25</span>
+            <h2>Empty Confession</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 26</span>
+            <h2>Fingerless Loyalty</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 27</span>
+            <h2>The Clumsy Farmer</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 28</span>
+            <h2>CThe Shadows have Teeth</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 29</span>
+            <h2>CWhisper Through Bones</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 30</span>
+            <h2>Even Towns Have Souls</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 31</span>
+            <h2>The Stillness and the Storm</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 32</span>
+            <h2>The Tacticians Carrot</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 33</span>
+            <h2>Witness of Nightmares</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 34</span>
+            <h2>Payment in Souls</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 35</span>
+            <h2>Broken Wing Crane</h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 36</span>
+            <h2>Chamber Empress </h2>
+          </div>
+        </div>
+
+        <div class="reader-chapter-card reader-chapter-card--upcoming">
+          <div class="reader-chapter-info">
+            <span class="ch-label">Chapter 37</span>
+            <h2> Burial of a Farmer</h2>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <div class="end-marker" role="navigation" aria-label="End of Line 1">
+      <a class="end-marker__link" href="index.html" title="Return to the main landing page">End of Line 1
+        <svg class="end-marker__arrow" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M6 3l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <footer class="site-footer site-footer--compact" role="contentinfo">
+      <div class="site-footer__inner">
+        <small class="site-footer__copyright">&copy; <span id="year"></span> Copyrighted by J.M. Mikael</small>
+        <nav class="site-footer__nav" aria-label="Footer">
+          <a class="site-footer__link" href="terms.html">Terms</a>
+          <span class="site-footer__sep">•</span>
+          <a class="site-footer__link" href="about.html">About</a>
+          <span class="site-footer__sep">•</span>
+          <a class="site-footer__link" href="mailto:contact@haikuofashandbone.com">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </main>
+  <script>
+    const warningOverlay = document.querySelector('.reader-warning-overlay');
+    const warningCard = warningOverlay ? warningOverlay.querySelector('.reader-warning') : null;
+    const chaptersList = document.querySelector('.chapters-list');
+    const warningButton = document.querySelector('[data-action="dismiss-warning"]');
+
+    if (warningOverlay && warningCard && chaptersList && warningButton) {
+      warningOverlay.classList.add('is-active');
+      warningButton.addEventListener('click', () => {
+        warningCard.classList.add('reader-warning--dismissed');
+        chaptersList.classList.remove('is-obscured');
+        chaptersList.removeAttribute('aria-hidden');
+        warningButton.blur();
+        setTimeout(() => {
+          warningOverlay.classList.remove('is-active');
+          warningOverlay.style.display = 'none';
+        }, 450);
+      });
+    }
+    // Footer year auto-fill
+    (function(){
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

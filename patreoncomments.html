@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter Comments — Haiku of Ash and Bone</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .comments-note {
+      margin: clamp(0.75rem, 2vw, 1.2rem) auto 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+      color: rgba(229, 234, 242, 0.72);
+    }
+
+    .comments-grid .collection-card__body {
+      align-items: center;
+    }
+
+    .comments-grid .collection-card__title {
+      font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body class="collection-page has-hero">
+  <section class="collection-hero" aria-labelledby="comments-hero-title">
+    <div class="collection-hero__heading">
+      <h1 class="collection-hero__kanji" id="comments-hero-title">評</h1>
+      <h2 class="collection-hero__name">Chapter Comments</h2>
+    </div>
+    <h3 class="collection-hero__tagline">※ Reader Reflections on Line 1 ※</h3>
+  </section>
+  <main id="manuscript" class="collection-main">
+    <div class="collection-shell" id="pageRoot">
+      <section class="collection-grid comments-grid" aria-label="Chapter comment hubs">
+        <a class="collection-card" href="patreonl1prologuecomment.html" aria-label="Prologue comment hub">
+          <div class="collection-card__body">
+            <span class="collection-card__label">Prologue</span>
+            <h3 class="collection-card__title">Before the Sun Cleared</h3>
+            <p class="collection-card__meta">Share your thoughts.</p>
+          </div>
+        </a>
+
+        <a class="collection-card" href="patreonl1ch1comment.html" aria-label="Chapter 1 comment hub">
+          <div class="collection-card__body">
+            <span class="collection-card__label">Chapter 1</span>
+            <h3 class="collection-card__title">When Crows Mourn the Dead</h3>
+            <p class="collection-card__meta">Share your thoughts.</p>
+          </div>
+        </a>
+
+        <a class="collection-card" href="patreonl1ch2comment.html" aria-label="Chapter 2 comment hub">
+          <div class="collection-card__body">
+            <span class="collection-card__label">Chapter 2</span>
+            <h3 class="collection-card__title">A Village Burns</h3>
+            <p class="collection-card__meta">Share your thoughts.</p>
+          </div>
+        </a>
+      </section>
+
+      <p class="comments-note">New discussion hubs unlock as additional chapters publish.</p>
+
+      <footer class="site-footer site-footer--compact" role="contentinfo">
+        <div class="site-footer__inner">
+          <small class="site-footer__copyright">&copy; <span id="year"></span> Copyrighted by J. M. Mikael</small>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a class="site-footer__link" href="terms.html">Terms</a>
+            <span class="site-footer__sep">•</span>
+            <a class="site-footer__link" href="about.html">About</a>
+            <span class="site-footer__sep">•</span>
+            <a class="site-footer__link" href="mailto:contact@haikuofashandbone.com">Contact</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <script>
+    (function(){
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
