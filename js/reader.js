@@ -20,7 +20,7 @@
   }
 
   function pathForIndex(num) {
-    if (!num) return '../line1-patreonreader.html';
+    if (!num) return '../index.html';
     // mapping: prologue might be 'prologue', but gated chapters use 'patreonchapter-X.html'
     if (num === 1) return 'patreonchapter-1.html';
     return `patreonchapter-${num}.html`;
@@ -30,7 +30,10 @@
     const article = qs('article.chapter');
     if (!article) return; // not a chapter page
 
-    const isComments = article.dataset.type === 'comments';
+    const pageType = article.dataset.type || '';
+    const isComments = pageType === 'comments';
+    const isLegal = pageType === 'legal';
+    const isInfo = pageType === 'info';
 
     const progressTrack = qs('.reading-progress__track');
     const progressBar = qs('.reading-progress__bar');
@@ -77,14 +80,14 @@
         nav.appendChild(aPrev);
       } else {
         const aPrev = document.createElement('a');
-        aPrev.href = '../line1-patreonreader.html';
+        aPrev.href = '../index.html';
         aPrev.textContent = 'Table of Contents';
         nav.appendChild(aPrev);
       }
 
       // TOC link always in middle
       const aToc = document.createElement('a');
-      aToc.href = '../line1-patreonreader.html';
+      aToc.href = '../index.html';
       aToc.textContent = 'Table of Contents';
       aToc.setAttribute('aria-label', 'Back to Act I table of contents');
       nav.appendChild(aToc);
@@ -99,7 +102,7 @@
       } else {
         // if no clear next, don't show a broken link; fetch a safe fallback
         const aNext = document.createElement('a');
-        aNext.href = '../line1-patreonreader.html';
+        aNext.href = '../index.html';
         aNext.textContent = 'End of Act';
         nav.appendChild(aNext);
       }
@@ -113,7 +116,7 @@
       }
     }
 
-    if (!isComments) {
+    if (!isComments && !isLegal && !isInfo) {
       const hasCustomTopNav = !!qs('.chapter-top-nav');
       if (!hasCustomTopNav) {
         injectNav('top');
@@ -188,7 +191,7 @@
         const prev = qs('.chapter-nav a[data-role="prev"], .chapter-top-nav a[data-role="prev"]');
         if (prev) { location.href = prev.href; }
       } else if (e.key === 't') {
-        const toc = qs('.chapter-nav a[href*="line1-patreonreader.html"], .chapter-top-nav a[href*="line1-patreonreader.html"]');
+        const toc = qs('.chapter-nav a[href*="index.html"], .chapter-top-nav a[href*="index.html"]');
         if (toc) { location.href = toc.href; }
       }
     });
